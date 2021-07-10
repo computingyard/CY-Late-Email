@@ -1,0 +1,24 @@
+{
+  "name": "cy-late-email",
+  "version": "1.0.0",
+  "description": "to deploy, just delete old files in zip and put all new code in zip file, then write this command:\r \r aws lambda update-function-code --function-name smart-office-lex-chatbot-fulfilment-webhook --zip-file fileb://index.zip\r ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dozip": "@powershell Compress-Archive -Path D:/Farhan/Programming/Owais/AttendanceManagementSystem/lateEmail",
+    "delzip": "@powershell del lateEmail.zip",
+    "sendzip": "aws lambda update-function-code --function-name lateEmail --zip-file fileb://../lateEmail.zip",
+    "deploy": "npm run delzip && npm run dozip && npm run sendzip",
+    "doziplinux": "zip -r index *",
+    "deploylinux": "npm run doziplinux && npm run sendzip",
+    "downloadzip_comment": "to download alexa code in zip",
+    "downloadzip": "aws lambda get-function --function-name lateEmail "
+  },
+  "author": "Muhammad Owais Warsi",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^8.7.1",
+    "nodemailer": "^6.6.2"
+  },
+  "keywords": []
+}
